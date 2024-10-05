@@ -21,5 +21,9 @@ public class Client {
 //        III. Deep Copy
         Student s3 = new Student(s);
         System.out.println(s3.getGradYear());
+
+//          IV. Telescopic Constructor
+        telescopingConstructor tc = new telescopingConstructor(5, 4, 3);
+
     }
 }
