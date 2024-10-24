@@ -15,11 +15,12 @@ public class Client {
 
 
 //    Question: Print 1 - 100, but every number should be printed in a separate thread
-        for (int i = 1; i <= 100; i++) {
+        int n = 1000000;
+        for (int i = 1; i <= n; i++) {
 
-            if(i == 80) {
-                System.out.println();
-            }
+//            if(i == 80) {
+//                System.out.println();
+//            }
 
             NumberPrinter numberPrinter = new NumberPrinter(i);
             Thread thread1 = new Thread(numberPrinter);
