@@ -1,48 +1,37 @@
-package constructors;
+package Constructors;
 
 public class Student {
     private int age;
-    private  int gradYear;
+    private int gradYear;
     private String name;
-
-    Student() {
+    // C1
+    Student(){
         age = 25;
-        gradYear = 2022;
-        name = "Gautam";
+        gradYear = 2020;
     }
 
-//    This constructor takes param as input
-    Student (int age, int gradYear, String name) {
-        // Here "This" will be referring to the Object which is calling the function
-        // if the variable and field names are same, we can distinguish them using "This" operators
-        // With "This" operator you cannot be able to refer to the variable
+
+//     this : current Object
+    // C2
+    Student(int age, int gradYear){
         this.age = age;
         this.gradYear = gradYear;
-        this.name = name;
     }
 
-//    Constructor taking another Constructor as input param
-    Student(Student other) {
+    Student(Student other){
         this.age = other.age;
-        this.name = other.name;
         this.gradYear = other.gradYear;
+        this.name = other.name;
     }
 
-//    Following are the Getter Setter for the above private fields
-    public int getGradYear() {
-        return gradYear;
-    }
-
-    public void setGradYear(int gradYear) {
-        this.gradYear = gradYear;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
+//    Student(int gradYear , int age){
+//
+//    }
+//
+//  C3
+    Student(int age, String message){
         this.age = age;
+        System.out.println(message);
     }
 
     public String getName() {
@@ -51,5 +40,21 @@ public class Student {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+//    "this" will be referring to the Object which is calling the function
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getGradYear() {
+        return gradYear;
+    }
+
+    public void setGradYear(int gradYear) {
+        this.gradYear = gradYear;
     }
 }

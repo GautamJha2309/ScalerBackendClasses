@@ -1,15 +1,14 @@
-    package ThreadPool;
+package ThreadPool;
 
-public class NumberPrinter implements Runnable {
+public class NumberPrinter implements Runnable{
+    private int noToPrint;
 
-    private int numberToPrint;
-
-    NumberPrinter(int number) {
-        this.numberToPrint = number;
+    NumberPrinter(int x){
+        noToPrint = x;
     }
 
     @Override
     public void run() {
-        System.out.println("Printing number: " + numberToPrint + " Thread: " + Thread.currentThread().getName());
+        System.out.println("Number :" + noToPrint + " Thread : " + Thread.currentThread().getName());
     }
 }

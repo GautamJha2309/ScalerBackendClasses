@@ -8,81 +8,80 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
 public class Sorter implements Callable<List<Integer>> {
-    List<Integer> arrayToSort;
+    private List<Integer> arrayToSort;
+    private ExecutorService executorService;
 
-    Sorter(List<Integer> arrayToSort) {
+    Sorter(List<Integer> arrayToSort, ExecutorService executorService) {
         this.arrayToSort = arrayToSort;
+        this.executorService = executorService;
     }
 
     @Override
     public List<Integer> call() throws Exception {
-        if(arrayToSort.size() == 1) {
+//        Base condition
+        if(arrayToSort.size() == 1){
+
             return arrayToSort;
         }
 
-        int mid = arrayToSort.size() / 2;
-//        List<Integer> leftArray = arrayToSort.subList(0, mid);
-//        List<Integer> rightArray = arrayToSort.subList(mid, arrayToSort.size());
-//                              OR
-        List<Integer> leftArray = new ArrayList<Integer>();
-        List<Integer> rightArray = new ArrayList<Integer>();
-        for(int i = 0; i < mid; i++) {
+        int mid = arrayToSort.size()/2;
+
+
+
+        List<Integer> leftArray = new ArrayList<>();
+        List<Integer> rightArray = new ArrayList<>();
+
+
+//        you can also use sublist instead of for loop
+
+
+        for(int i = 0; i < mid; i++){
             leftArray.add(arrayToSort.get(i));
         }
-        for(int i = mid + 1; i < arrayToSort.size(); i++) {
+
+        for(int i = mid; i < arrayToSort.size(); i++){
             rightArray.add(arrayToSort.get(i));
         }
 
-        Sorter leftArraySorter = new Sorter(leftArray);
-        Sorter rightArraySorter = new Sorter(rightArray);
-
-//        Execute mergeSort via Threads
-        ExecutorService ex = Executors.newFixedThreadPool(2);
+        Sorter leftArraySorter =  new Sorter(leftArray, executorService);
+        Sorter rightArraySorter = new Sorter(rightArray, executorService);
 //        callable : submit
-//        runnable: execute
+//        runnable : execute
 
-//        It will return future
-        Future<List<Integer>> leftArrayFuture = ex.submit(leftArraySorter);
-        Future<List<Integer>> rightArrayFuture = ex.submit(rightArraySorter);
-
-        List<Integer> sortedLeftArray = leftArrayFuture.get();
-        List<Integer> sortedRightArray = rightArrayFuture.get();
+//         it returns a Future
+        Future<List<Integer>> leftArrayFuture  = executorService.submit(leftArraySorter);
+        Future<List<Integer>> rightArrayFuture =  executorService.submit(rightArraySorter);
 
 //        We have to wait for both the threads to get completed
-//        Merge both list
+        List<Integer> sortedLeftArray =  leftArrayFuture.get();
+        List<Integer> sortedRightArray = rightArrayFuture.get();
 
 
-        return mergeSortedArray(sortedLeftArray, sortedRightArray);
-    }
 
-    // Method to merge two sorted lists
-    private List<Integer> mergeSortedArray(List<Integer> left, List<Integer> right) {
-        List<Integer> mergedList = new ArrayList<>();
-        int i = 0, j = 0;
+//        merge two sorted arrays
 
-        // Merge the two sorted lists into one sorted list
-        while (i < left.size() && j < right.size()) {
-            if (left.get(i) <= right.get(j)) {
-                mergedList.add(left.get(i));
-                i++;
+        int i= 0;
+        int j = 0;
+        List<Integer> sortedArray = new ArrayList<>();
+        while (i < sortedLeftArray.size() && j < sortedRightArray.size()) {
+            if (sortedLeftArray.get(i) <= sortedRightArray.get(j)) {
+                sortedArray.add(sortedLeftArray.get(i));
+                i += 1;
             } else {
-                mergedList.add(right.get(j));
-                j++;
+                sortedArray.add(sortedRightArray.get(j));
+                j += 1;
             }
         }
-
-        // If there are remaining elements in the left list, add them
-        while (i < left.size()) {
-            mergedList.add(left.get(i));
-            i++;
+        while (i < sortedLeftArray.size()) {
+            sortedArray.add(sortedLeftArray.get(i));
+            i += 1;
+        }
+        while (j < sortedRightArray.size()) {
+            sortedArray.add(sortedRightArray.get(j));
+            j += 1;
         }
 
-        // If there are remaining elements in the right list, add them
-        while (j < right.size()) {
-            mergedList.add(right.get(j));
-            j++;
-        }
 
-        return mergedList;
+        return sortedArray;
     }
 }

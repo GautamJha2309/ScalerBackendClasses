@@ -1,22 +1,27 @@
 package AbstractClasses;
 
-public class Student extends User {
+import Interfaces.V1.BankAPI;
 
+public class Student extends User implements BankAPI {
     private String batch;
+    private final int x1;
 
-    void attendClass() {
-        System.out.println("Attending class...");
+    Student(){
+        x1 = 10;
+    }
+
+    void attendClass(){
+        System.out.println("Attending Class");
+
     }
 
     @Override
     public void addProfile() {
-        System.out.println("Adding Student Profile...");
+
+    }
+
+    @Override
+    public int balanceCheck(String accountNumber) {
+        return 0;
     }
 }
-
-
-// Interfaces can be implemented in abstract class.
-// If you implement interface in abstract class and not implemented the interface methods then
-// the child class is responsible to implement that.
-// If the interface methods is not implemented in parent class then the issue will be reflected in child class.
-// and if implemented in parent class then its already can be used by child class itself.
