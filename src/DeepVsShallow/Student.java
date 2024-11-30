@@ -8,26 +8,37 @@ public class Student {
 
     Student(int age, int gradYear) {
         this.age = age;
-        this.gradYear =gradYear;
+        this.gradYear = gradYear;
     }
 
-    Student(Student other) {
+    Student(Student other){
         this.age = other.age;
         this.gradYear = other.gradYear;
-        this.enrollmentExam = other.enrollmentExam; // Shallow copy
-        // Shallow copy is used here because i want the student to be in same batch
-        // So, I should not create a new batch. I will be calling the same batch
+//        copying the reference
+        this.enrollmentExam = other.enrollmentExam;
+
+//        to create the deep copy, you need to ensure creation of new object
+        this.enrollmentExam = new Exam(other.enrollmentExam);
+//        shallow copy is used, I want this student in the same batch
+//        I should not create a new batch
         this.batch = other.batch;
     }
 
-//    Following is the example of DeepCopy. Here different exam object will be created for differeint student object
-//    Student(Student other) {
-//        this.age = other.age;
-//        this.gradYear = other.gradYear;
-//        this.enrollmentExam = new Exam(other.enrollmentExam); // Deep copy
-//        //                  OR
-//        this.enrollmentExam = new Exam(other.enrollmentExam.getExamId(), other.enrollmentExam.getScore()); // Deep copy
-//    }
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
+    }
+
+    public Exam getEnrollmentExam() {
+        return enrollmentExam;
+    }
+
+    public void setEnrollmentExam(Exam enrollmentExam) {
+        this.enrollmentExam = enrollmentExam;
+    }
 
     public int getAge() {
         return age;
@@ -43,21 +54,5 @@ public class Student {
 
     public void setGradYear(int gradYear) {
         this.gradYear = gradYear;
-    }
-
-    public Exam getEnrollmentExam() {
-        return enrollmentExam;
-    }
-
-    public void setEnrollmentExam(Exam enrollmentExam) {
-        this.enrollmentExam = enrollmentExam;
-    }
-
-    public Batch getBatch() {
-        return batch;
-    }
-
-    public void setBatch(Batch batch) {
-        this.batch = batch;
     }
 }

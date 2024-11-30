@@ -3,23 +3,19 @@ package Interfaces.V1;
 import java.util.Scanner;
 
 public class Client {
-
     private static Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) {
-
-        //-------------------------------------------------------------------------------------------
-        //          Dependence Injection
-        String bankName = scanner.nextLine();
+        String bankName =  scanner.nextLine();
         BankAPI bankAPI = null;
-        if(bankName.equals("Yes Bank")) {
-            bankAPI = new YesBankAPI();
-        } else if (bankName.equals("ICICI")) {
+        if(bankName.equals("ICICI")){
             bankAPI = new ICICIBankAPI();
+        } else if (bankName.equals("Yes")){
+            bankAPI = new YesBankAPI();
         }
         PhonePe phonePe = new PhonePe(bankAPI);
-
-
-        phonePe.rechargeFastTag(1000);
+        phonePe.rechargeFastTag(120);
     }
 }
+
+
+// Phone Pe : fast , loan

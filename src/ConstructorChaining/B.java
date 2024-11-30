@@ -1,26 +1,20 @@
 package ConstructorChaining;
 
 public class B extends A {
-
-    public B() {
-        System.out.println("Class B constructor is called");
+    B(){
+        System.out.println("Constructor of B");
     }
 
-    B(int a) {
-        // Initializing another constructor from here, use "this()" keyword (Initializing constructor with no parameter)
-        this(); // This is also known as telescoping constructor
-        System.out.println("Constructor B with value a is called : "+ a);
+    B(int a){
+        this();
+        System.out.println("Constructor of B with a :" + a);
     }
 
-    B(int a, int b) {
-        // Initializing another constructor from here, use "this()" keyword (Initializing constructor with 1 parameter)
-        this(a); // This is also known as telescoping constructor
-        System.out.println("Constructor B with value a is called : "+ a + " and  b : "+ b);
-    }
-
-    B(int a, int b, int c) {
-        // Initializing another constructor from here, use "this()" keyword (Initializing constructor with 1 parameter)
-        this(a, b); // This is also known as telescoping constructor
-        System.out.println("Constructor B with value a is called : "+ a + ",  b : "+ b + " and c : " + c);
+    B(int a, int b){
+//        this(...) also has to be in the first line
+        this(5); // B(5)
+        System.out.println("Constructor of B with a :" + a + " and b:" + b);
     }
 }
+
+// D -> C -> B (5 , 10) -> B(5) -> B() -> A()

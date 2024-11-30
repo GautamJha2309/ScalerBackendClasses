@@ -5,25 +5,24 @@ public class User {
     private String name;
     private String email;
     private String password;
+    private int x = 10;
+     Exam exam;
+    public int getX() {
+        return x;
+    }
 
-    public User() {
+    User(){
+        System.out.println("User constructor is executing");
         this.id = 1;
         this.name = "temp";
         this.email = "temp@gmail.com";
         this.password = "temp";
+        exam = new Exam(10);
     }
 
-    public User(int id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
+    public void login(){
+        System.out.println("User login is executing");
     }
-
-    public void login() {
-        System.out.println("User is successfully logged in");
-    }
-
     public int getId() {
         return id;
     }
@@ -55,5 +54,4 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

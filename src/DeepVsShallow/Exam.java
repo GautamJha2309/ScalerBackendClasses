@@ -1,31 +1,31 @@
 package DeepVsShallow;
 
 public class Exam {
-    private int examId;
+    private int exam_id;
     private int score;
     private ReattemptExam reattemptExam;
 
-    Exam(int examId, int score) {
-        this.examId = examId;
+    Exam(int exam_id , int score) {
+        this.exam_id = exam_id;
         this.score = score;
-        this.reattemptExam = new ReattemptExam(examId);
+        this.reattemptExam = new ReattemptExam(exam_id);
     }
 
-    Exam(Exam other) {
-        this.examId = other.examId;
+    Exam(Exam other){
+        this.exam_id = other.exam_id;
         this.score = other.score;
-        // Shallow Copy
+//        deep copy
+        this.reattemptExam = new ReattemptExam(other.reattemptExam);
+//        shallow copy
         this.reattemptExam = other.reattemptExam;
-        // Deep Copy
-        this.reattemptExam = new ReattemptExam((other.reattemptExam));
     }
 
-    public int getExamId() {
-        return examId;
+    public int getExam_id() {
+        return exam_id;
     }
 
-    public void setExamId(int examId) {
-        this.examId = examId;
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
     }
 
     public int getScore() {

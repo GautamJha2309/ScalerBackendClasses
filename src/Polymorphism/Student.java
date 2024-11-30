@@ -3,12 +3,10 @@ package Polymorphism;
 public class Student extends User {
     private String course;
 
-    Student() {
-        course = "Scaler Academy";
-    }
-
-    public void doSomething() {
-        super.login();
+    Student(){
+        course = "Scaler academy";
+//        name = "New_student";
+        setName("Mohit");
     }
 
     public String getCourse() {
@@ -18,4 +16,9 @@ public class Student extends User {
     public void setCourse(String course) {
         this.course = course;
     }
+
+    public void doSomething(){
+        super.login();
+    }
+
 }

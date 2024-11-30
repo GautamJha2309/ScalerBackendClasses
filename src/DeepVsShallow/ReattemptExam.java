@@ -1,21 +1,21 @@
 package DeepVsShallow;
 
 public class ReattemptExam {
-    private int examId;
+    private int exam_id;
 
-    ReattemptExam(int examId) {
-        this.examId = examId;
+    ReattemptExam(int exam_id){
+        this.exam_id = exam_id;
     }
 
-    ReattemptExam(ReattemptExam exam) {
-        this.examId = exam.examId;
+    ReattemptExam(ReattemptExam exam){
+        this.exam_id = exam.exam_id;
     }
 
-    public int getExamId() {
-        return examId;
+    public int getExam_id() {
+        return exam_id;
     }
 
-    public void setExamId(int examId) {
-        this.examId = examId;
+    public void setExam_id(int exam_id) {
+        this.exam_id = exam_id;
     }
 }

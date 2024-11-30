@@ -6,22 +6,16 @@ public class User {
     private String email;
     private String password;
 
-    public User() {
+    User() {
+        System.out.println("User constructor is executing");
         this.id = 1;
         this.name = "temp";
         this.email = "temp@gmail.com";
         this.password = "temp";
     }
 
-    public User(int id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
     public void login() {
-        System.out.println("User is successfully logged in");
+        System.out.println("User login is executing");
     }
 
     public int getId() {
@@ -55,4 +49,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

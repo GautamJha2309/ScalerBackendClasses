@@ -1,10 +1,10 @@
 package Interfaces.V1;
 
-public interface BankAPI {
+import java.util.Stack;
 
+public interface BankAPI {
     int balanceCheck(String accountNumber);
+//    void transfer(String fromAccount, String toAccount, double amount);
 }
 
-// Whoever wants to be a UPI provider bank, they should have to implement these methods
-
-// we can use interface as a type
+// Whoever wants to be a UPI provider

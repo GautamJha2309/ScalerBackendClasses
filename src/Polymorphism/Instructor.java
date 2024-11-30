@@ -3,8 +3,9 @@ package Polymorphism;
 public class Instructor extends User {
     public String subject;
 
-    Instructor() {
-        this.subject = "Academy";
+    Instructor(){
+        System.out.println("Instructor Constructor");
+        subject = "Backend";
     }
 
     public String getSubject() {
@@ -15,3 +16,6 @@ public class Instructor extends User {
         this.subject = subject;
     }
 }
+
+//              User (id , name, email ,password)
+//    Student(course)           Instructor(subject)
