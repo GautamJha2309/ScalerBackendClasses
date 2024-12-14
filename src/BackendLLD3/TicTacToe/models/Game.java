@@ -25,6 +25,17 @@ public class Game {
         this.winner = null;
         this.moves = new ArrayList<>();
     }
+
+    public Game(GameBuilder builder) {
+        this.board = builder.getBoard();
+        this.players = builder.getPlayers();
+        this.nextPlayerIndex = builder.getNextPlayerIndex();
+        this.gameState = builder.getGameState();
+        this.moves = builder.getMoves();
+        this.winningStrategies = builder.getWinningStrategies();
+        this.winner = builder.getWinner();
+    }
+
     public Board getBoard() {
         return board;
     }
@@ -83,6 +94,87 @@ public class Game {
 
     public void displayBoard(){
         board.display();
+    }
+
+    public static GameBuilder getBuilder(){
+        return new GameBuilder();
+    }
+
+    public static class GameBuilder {
+        private Board board;
+        private List<Player> players;
+        private Integer nextPlayerIndex;
+        private GameState gameState;
+        private List<Move> moves;
+        private List<WinningStrategy> winningStrategies;
+        private Player winner;
+
+        public Board getBoard() {
+            return board;
+        }
+
+        public GameBuilder setBoard(int size) {
+            this.board = new Board(size);
+            return this;
+        }
+
+        public List<Player> getPlayers() {
+            return players;
+        }
+
+        public GameBuilder setPlayers(List<Player> players) {
+            this.players = players;
+            return this;
+        }
+
+        public Integer getNextPlayerIndex() {
+            return nextPlayerIndex;
+        }
+
+        public GameBuilder setNextPlayerIndex(Integer nextPlayerIndex) {
+            this.nextPlayerIndex = nextPlayerIndex;
+            return this;
+        }
+
+        public GameState getGameState() {
+            return gameState;
+        }
+
+        public GameBuilder setGameState(GameState gameState) {
+            this.gameState = gameState;
+            return this;
+        }
+
+        public List<Move> getMoves() {
+            return moves;
+        }
+
+        public GameBuilder setMoves(List<Move> moves) {
+            this.moves = moves;
+            return this;
+        }
+
+        public List<WinningStrategy> getWinningStrategies() {
+            return winningStrategies;
+        }
+
+        public GameBuilder setWinningStrategies(List<WinningStrategy> winningStrategies) {
+            this.winningStrategies = winningStrategies;
+            return this;
+        }
+
+        public Player getWinner() {
+            return winner;
+        }
+
+        public GameBuilder setWinner(Player winner) {
+            this.winner = winner;
+            return this;
+        }
+
+        public Game build() {
+            return new Game(this);
+        }
     }
 
 //    public void makeMove(){

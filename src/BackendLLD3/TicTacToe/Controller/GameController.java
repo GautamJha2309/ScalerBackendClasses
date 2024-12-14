@@ -5,6 +5,7 @@ import BackendLLD3.TicTacToe.models.Game;
 import BackendLLD3.TicTacToe.models.GameState;
 import BackendLLD3.TicTacToe.models.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameController {
@@ -14,11 +15,21 @@ public class GameController {
             List<Player> players,
             List<WinningStrategy> winningStrategies
     ){
-        return new Game(
-                size,
-                players,
-                winningStrategies
-        );
+        return Game.getBuilder()
+                    .setBoard(size)
+                    .setPlayers(players)
+                    .setWinningStrategies(winningStrategies)
+                    .setNextPlayerIndex(0)
+                    .setGameState(GameState.INPROGRESS)
+                    .setWinner(null)
+                    .setMoves(new ArrayList<>())
+                    .build();
+
+//        return new Game(
+//                size,
+//                players,
+//                winningStrategies
+//        );
 
 //        Game.getBuilder().setSize().setPlayers().build();
 //        validations will be there
