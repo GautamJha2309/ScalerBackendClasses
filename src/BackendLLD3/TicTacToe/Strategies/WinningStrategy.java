@@ -5,4 +5,5 @@ import BackendLLD3.TicTacToe.models.Move;
 
 public interface WinningStrategy {
     boolean checkWinner(Board board, Move move);
+    void handleUndo(Board board, Move move);
 }

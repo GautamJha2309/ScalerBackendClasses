@@ -1,14 +1,18 @@
 package BackendLLD3.TicTacToe;
 
 import BackendLLD3.TicTacToe.Controller.GameController;
+import BackendLLD3.TicTacToe.Strategies.ColWinningStratergy;
 import BackendLLD3.TicTacToe.Strategies.RowWinningStrategy;
 import BackendLLD3.TicTacToe.Strategies.WinningStrategy;
 import BackendLLD3.TicTacToe.models.*;
 
+import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Client {
+    private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         GameController gameController = new GameController();
 //        to start the game , what are the things that are required
@@ -25,6 +29,7 @@ public class Client {
 
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningStrategy());
+        winningStrategies.add(new ColWinningStratergy());
 
         Game game = gameController.startGame(
                 size,
@@ -32,9 +37,16 @@ public class Client {
                 winningStrategies
         );
         gameController.display(game);
-        while(!gameController.getGameState(game).equals(GameState.INPROGRESS)){
-            gameController.display(game);
+        while(gameController.getGameState(game).equals(GameState.INPROGRESS)){
             gameController.makeMove(game);
+            gameController.display(game);
+            System.out.println("Do you want to Undo the last move? [Y/N]: ");
+            String undoAnswer = scanner.nextLine();
+            if (undoAnswer.equals("Y") || undoAnswer.equals("Yes") || undoAnswer.equals("y") || undoAnswer.equals("yes")){
+                gameController.undo(game);
+                System.out.println("Last Move undo Successfully...");
+                gameController.display(game);
+            }
 //            makeMove
 //            take the input to make the move
 //            update the game state if required

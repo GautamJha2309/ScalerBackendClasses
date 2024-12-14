@@ -1,5 +1,7 @@
 package BackendLLD3.TicTacToe.models;
 
+import BackendLLD3.TicTacToe.Strategies.BotPlayingStrategyFactory;
+
 public class Bot extends Player{
     private BotDiffcultyLevel botDiffcultyLevel;
 
@@ -14,5 +16,12 @@ public class Bot extends Player{
 
     public void setBotDiffcultyLevel(BotDiffcultyLevel botDiffcultyLevel) {
         this.botDiffcultyLevel = botDiffcultyLevel;
+    }
+
+    @Override
+    public Move makeMove(Board board) {
+        return BotPlayingStrategyFactory
+                .getBotPlayingStrategy(botDiffcultyLevel)
+                .makeMove(board);
     }
 }
