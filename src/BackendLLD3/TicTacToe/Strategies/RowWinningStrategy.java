@@ -39,7 +39,7 @@ public class RowWinningStrategy implements WinningStrategy {
     public void handleUndo(Board board, Move move) {
         int row = move.getCell().getRow();
         Character sym = move.getPlayer().getSymbol().getSymChar();
-        rowCounts.get(row).put(sym, rowCounts.get(row).get(sym) + 1);
+        rowCounts.get(row).put(sym, rowCounts.get(row).get(sym) - 1);
     }
 }
 

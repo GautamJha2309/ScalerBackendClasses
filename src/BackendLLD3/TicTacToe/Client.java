@@ -2,17 +2,17 @@ package BackendLLD3.TicTacToe;
 
 import BackendLLD3.TicTacToe.Controller.GameController;
 import BackendLLD3.TicTacToe.Strategies.ColWinningStratergy;
+import BackendLLD3.TicTacToe.Strategies.DiagonalWinningStrategy;
 import BackendLLD3.TicTacToe.Strategies.RowWinningStrategy;
 import BackendLLD3.TicTacToe.Strategies.WinningStrategy;
 import BackendLLD3.TicTacToe.models.*;
 
-import java.security.PrivateKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Client {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) {
         GameController gameController = new GameController();
 //        to start the game , what are the things that are required
@@ -20,8 +20,8 @@ public class Client {
 //        List of players
 //        winning strategies
         List<Player> players = new ArrayList<>();
-        players.add(new HumanPlayer(1 , "Mohit" , new Symbol('X')));
-        players.add(new Bot(2 , "Botty", new Symbol('O'), BotDiffcultyLevel.EASY));
+        players.add(new HumanPlayer(1 , "Monit" , new Symbol('X')));
+        players.add(new Bot(2 , "Betty", new Symbol('O'), BotDiffcultyLevel.EASY));
 
         int size = 3;
 
@@ -30,6 +30,7 @@ public class Client {
         List<WinningStrategy> winningStrategies = new ArrayList<>();
         winningStrategies.add(new RowWinningStrategy());
         winningStrategies.add(new ColWinningStratergy());
+        winningStrategies.add(new DiagonalWinningStrategy());
 
         Game game = gameController.startGame(
                 size,
